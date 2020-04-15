@@ -1,9 +1,9 @@
-from pyspark.sql import *
+from pyspark.sql import SparkSession
 from pyspark.sql.types import *
 import pyspark.sql.functions as f
 
 
-def getSchema(file):
+def getSchema(spark, file):
     schema = spark.read \
         .option("multiline", "true") \
         .json(file) \
@@ -82,10 +82,8 @@ def runQuery(df):
 
 def main():
     spark = SparkSession.builder.getOrCreate()
-    schema = getSchema("/home/app/sample_tweet.json")
+    schema = getSchema(spark, "/home/app/sample_tweet.json")
     kafkaDf = readKafkaStream(spark, schema, "tweets-kafka:9092", "tweets")
-    #prepDf = extractDf(kafkaDf)
-    #flatDf = flattenDf(extractDf(kafkaDf))
     aggDf = aggregateDf(flattenDf(extractDf(kafkaDf)))
     runQuery(aggDf)
 
