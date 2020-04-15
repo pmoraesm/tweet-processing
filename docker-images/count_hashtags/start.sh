@@ -4,4 +4,4 @@
 --conf spark.cassandra.connection.host=tweets-db-cassandra \
 --conf spark.cassandra.auth.username=admin \
 --conf spark.cassandra.auth.password=tweets \
-count_hashtags.py
+/home/app/count_hashtags.py

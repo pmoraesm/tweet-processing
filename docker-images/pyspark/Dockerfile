@@ -19,4 +19,3 @@ RUN echo 'alias python="/usr/bin/python3"' >> /root/.bashrc && \
 RUN /usr/bin/python3 -m pip install pyspark
 
 CMD /home/app/loop.sh
-
