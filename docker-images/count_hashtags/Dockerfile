@@ -13,5 +13,7 @@ RUN mkdir /home/app/ \
 
 COPY ./count_hashtags.py ./start.sh ./sample_tweet.json /home/app/
 
+RUN chmod -R 755 /home/app/
+
 CMD ["/home/app/start.sh"]
 
